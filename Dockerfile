@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:latest
+FROM --platform=${TARGETPLATFORM} teddysun/xray:1.5.5
 LABEL maintainer "V2Fly Community <dev@v2fly.org>"
 
 WORKDIR /root
