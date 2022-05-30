@@ -3,6 +3,7 @@ on:
     inputs:
       tag:
         description: "The tag version you want to build (starts with v)"
+        default: "v4.45.0"
       xtag:
         description: "The tag version of Xray used"
         default: "1.5.5"
