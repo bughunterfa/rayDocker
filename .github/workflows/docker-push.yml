@@ -5,6 +5,7 @@ on:
         description: "The tag version you want to build (starts with v)"
       xtag:
         description: "The tag version of Xray used"
+        default: "1.5.5"
   push:
     paths:
       - "v2ray.sh"
@@ -57,13 +58,14 @@ jobs:
         run: |
           echo ::set-output name=docker_platforms::linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           echo ::set-output name=docker_image::sleeplife/ray-full
-          echo ::set-output name=docker_tag::x${{ github.event.inputs.tag }}.${{ steps.tag.outputs.tag }}
+          echo ::set-output name=docker_tag::${{ steps.tag.outputs.tag }}
+          echo ::set-output name=docker_tagshow::x${{ github.event.inputs.tag }}.${{ steps.tag.outputs.tag }}
           echo ::set-output name=docker_is_push::${PUSH:-false}
       - name: Build tag & latest release
         run: |
           docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
           --output "type=image,push=${{ steps.prepare.outputs.docker_is_push }}" \
-          --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.docker_tag }}" \
+          --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.docker_tagshow }}" \
           --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
           --build-arg TAG=${{ steps.prepare.outputs.docker_tag }} \
           --file Dockerfile .
