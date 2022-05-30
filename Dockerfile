@@ -19,6 +19,8 @@ RUN if [ "$DOWNLOADCONFIG" = "" ]; \
 	fi
 
 RUN wget -O /usr/share/v2ray/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /dev/null 2>&1 \
-	&& wget -O /usr/share/v2ray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /dev/null 2>&1
+	&& wget -O /usr/share/v2ray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /dev/null 2>&1 \
+	&& wget -O /usr/share/xray/geosite.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /dev/null 2>&1 \
+	&& wget -O /usr/share/xray/geoip.dat https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /dev/null 2>&1
 
 CMD [ "/usr/bin/v2ray", "-config", "/etc/v2ray/config.json" ]
