@@ -60,7 +60,7 @@ jobs:
           echo ::set-output name=docker_platforms::linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           echo ::set-output name=docker_image::sleeplife/ray-full
           echo ::set-output name=docker_tag::${{ steps.tag.outputs.tag }}
-          echo ::set-output name=docker_tagshow::x${{ github.event.inputs.tag }}.${{ steps.tag.outputs.tag }}
+          echo ::set-output name=docker_tagshow::x${{ github.event.inputs.xtag }}.${{ steps.tag.outputs.tag }}
           echo ::set-output name=docker_is_push::${PUSH:-false}
       - name: Build tag & latest release
         run: |
